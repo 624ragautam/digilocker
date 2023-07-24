@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block title %}
+Student Details
+{% endblock title %}
+
+
+
+{% block body %}
+ <h3 class="text-center"><span>Permissions</span> </h3>
+  
+{% with messages=get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+
+<div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+    {{message}}
+
+
+</div>
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+<br>
+<!-- <form action="/permissions" method="post">
+<div class="form-group">
+    <label for="uname">Username</label>
+    <input type="text" class="form-control" name="uname" id="uname" placeholder="{{current_user.username}}">
+    </div>
+    <br>
+    
+      <button type="submit" class="btn btn-danger btn-sm btn-block">Search permissions</button>
+    </form>
+    <br>
+    <br> -->
+
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Grant ID</th>
+      <th scope="col">Username</th>
+      <th scope="col">Fname</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for post in query %}
+    <tr>
+      <th scope="row">{{post.uid}}</th>
+      <td>{{post.username}}</td>
+      <td>{{post.fname}}</td>
+    </tr>
+{% endfor %}
+  
+  </tbody>
+</table>
+
+
+
+
+
+
+{% endblock body %}

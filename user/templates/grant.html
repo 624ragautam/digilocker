@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block title %}
+Grant Permissions
+{% endblock title %}
+
+
+
+{% block body %}
+ <h3 class="text-center"><span>Grant Permissions</span> </h3>
+  
+{% with messages=get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+
+<div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+    {{message}}
+
+
+</div>
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+<br>
+<div class="container">
+
+<div class="row">
+
+<div class="col-md-4">
+
+<form action="/grant" method="post">
+
+
+  <div class="form-group">
+    <label for="" >Username:</label>
+    <select name="uname" class="form-control" id="uname">
+    {% for id in email %}
+      <option value=`{{id.email}}`>{{id.email}}</option>
+    {% endfor %}
+    </select>
+  </div>>
+<br>
+<div class="form-group">
+    <label for="fname">Enter Your Filename</label>
+    <input type="text" class="form-control" name="fname" id="fname" placeholder="">
+    </div>
+<br>
+
+  <button type="submit" class="btn btn-danger btn-sm btn-block">Grant Permission</button>
+</form>
+<br>
+<br>
+
+</div>
+
+
+<div class="col-md-8">
+{% if bio %}
+<br>
+<h3>Permissions</h3>
+ <hr>
+ <li>Key : {{bio}}</li>
+<br><br>
+{% else %}
+<!-- No such results -->
+{% endif %}
+
+</div>
+</div>
+
+
+
+{% endblock body %}
